@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './index.css';
-import { compoundsData, reportsData } from './data';
+import { compoundsData } from './data';
 
 const SearchIcon = () => (
   <svg className="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -14,29 +14,32 @@ const CloseIcon = () => (
   </svg>
 );
 
-const ChevronIcon = ({ open }) => (
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16" style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 150ms ease' }} xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+const DocumentIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="16" y1="13" x2="8" y2="13" />
+    <line x1="16" y1="17" x2="8" y2="17" />
+    <polyline points="10 9 9 9 8 9" />
+  </svg>
+);
+
+const ExternalLinkIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    <polyline points="15 3 21 3 21 9" />
+    <line x1="10" y1="14" x2="21" y2="3" />
   </svg>
 );
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('kimia');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCompound, setSelectedCompound] = useState(null);
-  const [selectedReport, setSelectedReport] = useState(null);
 
-  // Filtering
-  const filteredCompounds = compoundsData.filter(c => 
-    c.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+  const filtered = compoundsData.filter(c =>
+    c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     c.formula.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    c.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const filteredReports = reportsData.filter(r => 
-    r.judul.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    r.metode.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    r.kategori.toLowerCase().includes(searchQuery.toLowerCase())
+    c.hazards.some(h => h.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   return (
@@ -50,84 +53,50 @@ export default function App() {
           <div className="container flex justify-between items-center" style={{ marginBottom: '16px' }}>
             <h1 className="headline-lg text-primary" style={{ margin: 0 }}>ChemBase</h1>
           </div>
-          
-          <div className="container flex" style={{ gap: '24px' }}>
-            <button 
-              onClick={() => setActiveTab('kimia')}
-              style={{
-                background: 'none', border: 'none', padding: '0 0 12px 0',
-                fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: '14px',
-                color: activeTab === 'kimia' ? 'var(--primary)' : 'var(--on-surface-variant)',
-                borderBottom: activeTab === 'kimia' ? '2px solid var(--primary)' : '2px solid transparent',
-                cursor: 'pointer', transition: 'all 150ms ease'
-              }}>
-              Zat Kimia
-            </button>
-            <button 
-              onClick={() => setActiveTab('laporan')}
-              style={{
-                background: 'none', border: 'none', padding: '0 0 12px 0',
-                fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: '14px',
-                color: activeTab === 'laporan' ? 'var(--primary)' : 'var(--on-surface-variant)',
-                borderBottom: activeTab === 'laporan' ? '2px solid var(--primary)' : '2px solid transparent',
-                cursor: 'pointer', transition: 'all 150ms ease'
-              }}>
-              Laporan Analitik
-            </button>
-          </div>
         </div>
       </header>
 
-      {/* search bar */}
+      {/* Search */}
       <div className="search-container">
         <div className="container search-input-wrapper" style={{ padding: 0 }}>
           <SearchIcon />
-          <input 
-            type="text" 
-            className="search-input" 
-            placeholder={activeTab === 'kimia' ? "Cari nama zat, rumus, atau kategori..." : "Cari judul laporan atau metode..."}
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Cari nama zat, rumus, atau sifat bahaya..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
           />
         </div>
       </div>
 
-      {/* main */}
+      {/* Main */}
       <main className="container mt-md" style={{ paddingBottom: '40px' }}>
-        {activeTab === 'kimia' && (
-          <div className="grid-layout">
-            {filteredCompounds.map(c => (
-              <CompoundCard key={c.id} data={c} onClick={() => setSelectedCompound(c)} />
-            ))}
-            {filteredCompounds.length === 0 && <p className="body-md text-on-surface-variant">Tidak ada zat kimia yang cocok.</p>}
-          </div>
-        )}
-
-        {activeTab === 'laporan' && (
-          <div className="grid-layout">
-            {filteredReports.map(r => (
-              <ReportCard key={r.id} data={r} onClick={() => setSelectedReport(r)} />
-            ))}
-            {filteredReports.length === 0 && <p className="body-md text-on-surface-variant">Tidak ada laporan yang cocok.</p>}
-          </div>
-        )}
+        <div className="grid-layout">
+          {filtered.map(c => (
+            <CompoundCard key={c.id} data={c} onClick={() => setSelectedCompound(c)} />
+          ))}
+          {filtered.length === 0 && <p className="body-md text-on-surface-variant">Tidak ada zat kimia yang cocok.</p>}
+        </div>
       </main>
 
-      {/* modals */}
+      {/* Modal */}
       {selectedCompound && <CompoundModal data={selectedCompound} onClose={() => setSelectedCompound(null)} />}
-      {selectedReport && <ReportModal data={selectedReport} onClose={() => setSelectedReport(null)} />}
     </div>
   );
 }
 
 
+// ================= Card =================
 
 function CompoundCard({ data, onClick }) {
   const getHazardClass = (hz) => {
-    if(hz.toLowerCase().includes('korosif')) return 'chip-korosif';
-    if(hz.toLowerCase().includes('terbakar')) return 'chip-terbakar';
-    if(hz.toLowerCase().includes('toksik')) return 'chip-toksik';
-    if(hz.toLowerCase().includes('aman')) return 'chip-aman';
+    const l = hz.toLowerCase();
+    if (l.includes('korosif')) return 'chip-korosif';
+    if (l.includes('terbakar')) return 'chip-terbakar';
+    if (l.includes('oksidator')) return 'chip-oksidator';
+    if (l.includes('beracun') || l.includes('toksik')) return 'chip-toksik';
+    if (l.includes('iritan')) return 'chip-iritan';
     return 'chip-neutral';
   };
 
@@ -135,38 +104,23 @@ function CompoundCard({ data, onClick }) {
     <div className="chem-card" onClick={onClick}>
       <div className="card-top-strip strip-blue"></div>
       <div className="card-body">
-        {/* Row 1 */}
-        <div className="flex justify-between items-center">
-          <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: '16px', color: '#1a1c1e', margin: 0 }}>
-            {data.name}
-          </h2>
-          <span className="chip chip-neutral label-caps" style={{ fontSize: '10px' }}>{data.category}</span>
-        </div>
-        
-        {/* Row 2 */}
+        {/* Name */}
+        <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: '16px', color: '#1a1c1e', margin: 0 }}>
+          {data.name}
+        </h2>
+
+        {/* Formula */}
         <div>
-          <span className="formula-sm text-primary" style={{ background: '#f3f3f6', padding: '4px 8px', borderRadius: '4px' }}>
-            {data.formula}
-          </span>
+          <span className="formula-tag">{data.formula}</span>
         </div>
-        
-        {/* Row 3 */}
-        <div className="flex" style={{ gap: '16px', borderTop: '1px solid #e2e2e5', borderBottom: '1px solid #e2e2e5', padding: '8px 0' }}>
-          <div>
-            <div className="label-caps text-outline">Wujud</div>
-            <div className="body-md" style={{ fontSize: '14px' }}>{data.wujud}</div>
-          </div>
-          <div>
-            <div className="label-caps text-outline">Warna</div>
-            <div className="body-md" style={{ fontSize: '14px' }}>{data.warna}</div>
-          </div>
-          <div>
-            <div className="label-caps text-outline">pH</div>
-            <div className="body-md" style={{ fontSize: '14px' }}>{data.ph}</div>
-          </div>
+
+        {/* Wujud */}
+        <div style={{ borderTop: '1px solid #e2e2e5', paddingTop: '10px' }}>
+          <div className="label-caps text-outline" style={{ marginBottom: '2px' }}>Warna / Wujud</div>
+          <div style={{ fontFamily: 'var(--font-sans)', fontSize: '14px', color: '#1a1c1e' }}>{data.wujud}</div>
         </div>
-        
-        {/* Row 4 */}
+
+        {/* Hazards */}
         <div className="flex flex-wrap gap-sm">
           {data.hazards.map(hz => (
             <span key={hz} className={`chip label-caps ${getHazardClass(hz)}`} style={{ fontSize: '10px' }}>{hz}</span>
@@ -177,77 +131,114 @@ function CompoundCard({ data, onClick }) {
   );
 }
 
+
+// ================= Modal =================
+
 function CompoundModal({ data, onClose }) {
-  const [sifatOpen, setSifatOpen] = useState(true);
+  const getHazardClass = (hz) => {
+    const l = hz.toLowerCase();
+    if (l.includes('korosif')) return 'chip-korosif';
+    if (l.includes('terbakar')) return 'chip-terbakar';
+    if (l.includes('oksidator')) return 'chip-oksidator';
+    if (l.includes('beracun') || l.includes('toksik')) return 'chip-toksik';
+    if (l.includes('iritan')) return 'chip-iritan';
+    return 'chip-neutral';
+  };
+
+  const hasLink = data.msds && data.msds.link;
+  const hasMsdsFields = data.msds && (data.msds.penanganan || data.msds.penyimpanan || data.msds.p3k || data.msds.pembuangan);
+  const hasMsds = hasLink || hasMsdsFields;
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-drag-handle"></div>
-        
-        {/* Header Section */}
+
+        {/* Header */}
         <div className="modal-header">
           <button className="close-button" onClick={onClose}><CloseIcon /></button>
-          <div className="formula-sm text-primary" style={{ fontSize: '24px', fontWeight: 700, marginBottom: '4px' }}>{data.formula}</div>
-          <div className="headline-lg text-on-surface" style={{ fontSize: '20px', marginBottom: '8px' }}>{data.name}</div>
-          <div className="label-caps text-outline">CAS: {data.cas}</div>
+          <div className="formula-lg text-primary">{data.formula}</div>
+          <div className="headline-lg text-on-surface" style={{ fontSize: '20px', marginTop: '4px' }}>{data.name}</div>
         </div>
-        
+
         <div className="modal-body">
-          {/* Quick Stats Grid */}
-          <div className="modal-section">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-              <StatCell label="Berat Molekul" value={data.beratMolekul} />
-              <StatCell label="Titik Didih" value={data.titikDidih} />
-              <StatCell label="Kepadatan" value={data.kepadatan} />
-              <StatCell label="Kategori" value={data.category} />
-              <StatCell label="Wujud" value={data.wujud} />
-              <StatCell label="pH" value={data.ph} />
+          {/* Rumus Bangun Section */}
+          {data.rumusBangun && (
+            <div className="modal-section" style={{ paddingBottom: '20' }}>
+              <h3 className="label-caps text-on-surface mb-sm">Rumus Bangun</h3>
+              <div style={{ 
+                background: 'var(--surface-container-low)', 
+                borderRadius: '12px', 
+                padding: '20px', 
+                display: 'flex', 
+                justifyContent: 'center',
+                border: '1px solid var(--outline-variant)'
+              }}>
+                <img 
+                  src={data.rumusBangun} 
+                  alt={`Struktur ${data.name}`} 
+                  style={{ maxHeight: '140px', objectFit: 'contain' }} 
+                />
+              </div>
             </div>
-          </div>
-          
-          {/* Sifat Section */}
-          <div className="modal-section" style={{ padding: '0' }}>
-            <button 
-              onClick={() => setSifatOpen(!sifatOpen)}
-              style={{ width: '100%', padding: '24px', background: 'none', border: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}
-            >
-              <span className="label-caps text-on-surface">Sifat Fisik & Kimia</span>
-              <ChevronIcon open={sifatOpen} />
-            </button>
-            <div className="accordion-content" style={{ maxHeight: sifatOpen ? '500px' : '0', overflow: 'hidden', padding: sifatOpen ? '0 24px 24px 24px' : '0 24px' }}>
-              <div className="flex flex-col gap-md">
-                {data.sifat.map((s, i) => (
-                  <div key={i} style={{ borderLeft: '2px solid var(--primary)', paddingLeft: '12px' }}>
-                    <div className="label-caps text-on-surface-variant mb-sm">{s.label}</div>
-                    <div className="body-md">{s.value}</div>
-                  </div>
-                ))}
+          )}
+
+          {/* Info Grid */}
+          <div className="modal-section">
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div className="stat-cell">
+                <div className="label-caps text-outline" style={{ marginBottom: '4px' }}>Rumus Kimia</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '15px', fontWeight: 500, color: 'var(--primary)' }}>{data.formula}</div>
+              </div>
+              <div className="stat-cell">
+                <div className="label-caps text-outline" style={{ marginBottom: '4px' }}>Warna / Wujud</div>
+                <div style={{ fontFamily: 'var(--font-sans)', fontSize: '14px', color: '#1a1c1e' }}>{data.wujud}</div>
               </div>
             </div>
           </div>
-          
+
+          {/* Sifat Bahaya */}
+          <div className="modal-section">
+            <h3 className="label-caps text-on-surface mb-sm">Sifat Bahaya</h3>
+            <div className="flex flex-wrap gap-sm">
+              {data.hazards.map(hz => (
+                <span key={hz} className={`chip label-caps ${getHazardClass(hz)}`} style={{ fontSize: '11px' }}>{hz}</span>
+              ))}
+            </div>
+          </div>
+
           {/* MSDS Section */}
           <div className="modal-section">
             <h3 className="label-caps text-on-surface mb-md">Keselamatan & Penanganan (MSDS)</h3>
-            <div className="flex flex-col gap-md">
-              <MsdsBlock title="Penanganan" content={data.msds.penanganan} color="#006591" />
-              <MsdsBlock title="Penyimpanan" content={data.msds.penyimpanan} color="#006d37" />
-              <MsdsBlock title="P3K" content={data.msds.p3k} color="#ba1a1a" />
-              <MsdsBlock title="Pembuangan" content={data.msds.pembuangan} color="#3e4851" />
-            </div>
+            {hasMsds ? (
+              <div className="flex flex-col gap-md">
+                {hasLink && (
+                  <a
+                    href={data.msds.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="msds-link-button"
+                  >
+                    <DocumentIcon />
+                    <span>Lihat Dokumen MSDS (PDF)</span>
+                    <ExternalLinkIcon />
+                  </a>
+                )}
+                {data.msds.penanganan && <MsdsBlock title="Penanganan" content={data.msds.penanganan} color="#006591" />}
+                {data.msds.penyimpanan && <MsdsBlock title="Penyimpanan" content={data.msds.penyimpanan} color="#006d37" />}
+                {data.msds.p3k && <MsdsBlock title="P3K" content={data.msds.p3k} color="#ba1a1a" />}
+                {data.msds.pembuangan && <MsdsBlock title="Pembuangan" content={data.msds.pembuangan} color="#3e4851" />}
+              </div>
+            ) : (
+              <div style={{ background: '#f3f3f6', borderRadius: '8px', padding: '20px', textAlign: 'center' }}>
+                <div style={{ fontFamily: 'var(--font-sans)', fontSize: '14px', color: '#6e7882' }}>
+                  Data MSDS belum tersedia.
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function StatCell({ label, value }) {
-  return (
-    <div style={{ background: '#f3f3f6', borderRadius: '6px', padding: '12px' }}>
-      <div className="label-caps text-outline mb-sm">{label}</div>
-      <div className="body-md">{value}</div>
     </div>
   );
 }
@@ -256,152 +247,7 @@ function MsdsBlock({ title, content, color }) {
   return (
     <div style={{ background: `${color}0F`, borderLeft: `4px solid ${color}`, borderRadius: '0 6px 6px 0', padding: '12px' }}>
       <div className="label-caps mb-sm" style={{ color: color }}>{title}</div>
-      <div className="body-md text-on-surface">{content}</div>
-    </div>
-  );
-}
-
-
-// ================= LAB REPORTS =================
-
-function ReportCard({ data, onClick }) {
-  return (
-    <div className="chem-card" onClick={onClick}>
-      <div className="card-top-strip strip-green"></div>
-      <div className="card-body">
-        {/* Row 1 */}
-        <div>
-          <div className="flex justify-between items-start mb-sm">
-            <span className="label-caps text-secondary">{data.metode}</span>
-            <span className="chip chip-neutral label-caps" style={{ fontSize: '10px' }}>{data.kategori}</span>
-          </div>
-          <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: '18px', color: '#1a1c1e', margin: 0, lineHeight: '24px' }}>
-            {data.judul}
-          </h2>
-        </div>
-        
-        {/* Row 2 - Prinsip Preview */}
-        <div className="body-md text-on-surface-variant" style={{ 
-          fontSize: '14px', 
-          display: '-webkit-box', 
-          WebkitLineClamp: 2, 
-          WebkitBoxOrient: 'vertical', 
-          overflow: 'hidden' 
-        }}>
-          {data.prinsip}
-        </div>
-        
-        {/* Row 3 - Tags */}
-        <div className="flex flex-wrap gap-sm mt-md">
-          {data.tags.map(tag => (
-            <span key={tag} className="chip label-caps" style={{ background: '#f3f3f6', color: '#3e4851', fontSize: '10px' }}>{tag}</span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ReportModal({ data, onClose }) {
-  return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <div className="modal-drag-handle"></div>
-        
-        {/* Header Section */}
-        <div className="modal-header">
-          <button className="close-button" onClick={onClose}><CloseIcon /></button>
-          <div className="label-caps text-secondary mb-sm">{data.metode} • {data.kategori}</div>
-          <div className="headline-lg text-on-surface">{data.judul}</div>
-        </div>
-        
-        <div className="modal-body">
-          {/* Prinsip */}
-          <div className="modal-section">
-            <h3 className="label-caps text-on-surface mb-sm">Prinsip</h3>
-            <div className="body-md" style={{ background: '#f3f3f6', borderRadius: '8px', padding: '16px', color: '#1a1c1e' }}>
-              {data.prinsip}
-            </div>
-          </div>
-          
-          {/* Tujuan */}
-          <div className="modal-section">
-            <h3 className="label-caps text-on-surface mb-md">Tujuan</h3>
-            <div className="flex flex-col gap-sm">
-              {data.tujuan.map((t, i) => (
-                <div key={i} className="flex gap-md items-start">
-                  <div style={{ 
-                    minWidth: '20px', height: '20px', borderRadius: '10px', 
-                    background: 'var(--primary)', color: 'white', 
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontFamily: 'var(--font-mono)', fontSize: '12px', fontWeight: 700,
-                    marginTop: '2px'
-                  }}>
-                    {i + 1}
-                  </div>
-                  <div className="body-md">{t}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          {/* Alat & Bahan */}
-          <div className="modal-section">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
-              <div>
-                <div className="label-caps" style={{ background: '#006591', color: 'white', padding: '8px 12px', borderRadius: '4px', marginBottom: '12px' }}>Alat</div>
-                <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  {data.alat.map(a => (
-                    <li key={a} className="flex items-center gap-sm">
-                      <div style={{ width: '4px', height: '4px', background: 'var(--outline-variant)', borderRadius: '1px' }}></div>
-                      <span className="label-caps" style={{ color: '#3e4851', textTransform: 'none', fontWeight: 600 }}>{a}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <div className="label-caps" style={{ background: '#006d37', color: 'white', padding: '8px 12px', borderRadius: '4px', marginBottom: '12px' }}>Bahan</div>
-                <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  {data.bahan.map(b => (
-                    <li key={b} className="flex items-center gap-sm">
-                      <div style={{ width: '4px', height: '4px', background: 'var(--outline-variant)', borderRadius: '1px' }}></div>
-                      <span className="label-caps" style={{ color: '#3e4851', textTransform: 'none', fontWeight: 600 }}>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-          
-          {/* Cara Kerja */}
-          <div className="modal-section">
-            <h3 className="label-caps text-on-surface mb-md">Cara Kerja</h3>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              {data.caraKerja.map((step, i) => (
-                <div key={i} className="flex gap-md" style={{ position: 'relative', paddingBottom: i < data.caraKerja.length - 1 ? '24px' : '0' }}>
-                  {/* Connector Line */}
-                  {i < data.caraKerja.length - 1 && (
-                    <div style={{ position: 'absolute', left: '12px', top: '24px', bottom: '0', width: '1px', borderLeft: '1px dashed var(--outline-variant)' }}></div>
-                  )}
-                  
-                  {/* Step Number */}
-                  <div style={{ 
-                    fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: '18px', color: 'var(--primary)',
-                    minWidth: '24px', textAlign: 'center', zIndex: 2, background: 'white'
-                  }}>
-                    {i + 1}
-                  </div>
-                  
-                  {/* Step Text */}
-                  <div className="body-md text-on-surface" style={{ paddingTop: '2px' }}>
-                    {step}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '14px', lineHeight: '1.6', color: '#1a1c1e' }}>{content}</div>
     </div>
   );
 }
