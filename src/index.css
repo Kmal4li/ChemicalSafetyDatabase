@@ -149,6 +149,8 @@ body {
 .chip-oksidator { background: #fff0d6; color: #7a4100; }
 .chip-toksik { background: #f0e6ff; color: #4a007a; }
 .chip-iritan { background: #ffefd6; color: #6b4e00; }
+.chip-karsinogenik { background: #ffd6e0; color: #8c0032; }
+.chip-eksplosif { background: #ffdcc8; color: #832200; }
 
 /* Formula */
 .formula-tag {
@@ -224,6 +226,24 @@ body {
 .search-input:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 2px rgba(0, 101, 145, 0.2);
+}
+
+.search-input-medium {
+  width: 100%;
+  max-width: 560px;
+}
+
+.search-total-info {
+  margin-top: 10px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--outline);
+  letter-spacing: 0.01em;
+}
+
+.search-total-info strong {
+  color: var(--primary);
+  font-weight: 600;
 }
 
 /* Modals */

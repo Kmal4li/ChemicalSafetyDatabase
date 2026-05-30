@@ -51,22 +51,30 @@ export default function App() {
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', paddingTop: '16px' }}>
           <div className="container flex justify-between items-center" style={{ marginBottom: '16px' }}>
-            <h1 className="headline-lg text-primary" style={{ margin: 0 }}>ChemBase</h1>
+            <h1 className="headline-lg text-primary" style={{ margin: 0 }}>Chemical Safety Database</h1>
           </div>
         </div>
       </header>
 
       {/* Search */}
       <div className="search-container">
-        <div className="container search-input-wrapper" style={{ padding: 0 }}>
-          <SearchIcon />
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Cari nama zat, rumus, atau sifat bahaya..."
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-          />
+        <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div className="search-input-wrapper search-input-medium" style={{ padding: 0 }}>
+            <SearchIcon />
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Cari nama zat, rumus, atau sifat bahaya..."
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+            />
+          </div>
+          <div className="search-total-info">
+            {searchQuery
+              ? <span>Ditemukan <strong>{filtered.length}</strong> dari <strong>{compoundsData.length}</strong> zat kimia</span>
+              : <span>Menampilkan <strong>{compoundsData.length}</strong> zat kimia</span>
+            }
+          </div>
         </div>
       </div>
 
@@ -97,6 +105,8 @@ function CompoundCard({ data, onClick }) {
     if (l.includes('oksidator')) return 'chip-oksidator';
     if (l.includes('beracun') || l.includes('toksik')) return 'chip-toksik';
     if (l.includes('iritan')) return 'chip-iritan';
+    if (l.includes('karsinogenik')) return 'chip-karsinogenik';
+    if (l.includes('eksplosif')) return 'chip-eksplosif';
     return 'chip-neutral';
   };
 
@@ -142,6 +152,8 @@ function CompoundModal({ data, onClose }) {
     if (l.includes('oksidator')) return 'chip-oksidator';
     if (l.includes('beracun') || l.includes('toksik')) return 'chip-toksik';
     if (l.includes('iritan')) return 'chip-iritan';
+    if (l.includes('karsinogenik')) return 'chip-karsinogenik';
+    if (l.includes('eksplosif')) return 'chip-eksplosif';
     return 'chip-neutral';
   };
 
