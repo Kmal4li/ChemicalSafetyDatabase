@@ -20,7 +20,39 @@ import rb2_8 from './assets/rumusBangun2/8.jpeg';
 import rb2_9 from './assets/rumusBangun2/9.jpeg';
 import rb2_10 from './assets/rumusBangun2/10.jpeg';
 
-// ==================== Batch 1 (1-10) ====================
+import rb3_1 from './assets/rumusBangun3/image.png';
+import rb3_2 from './assets/rumusBangun3/image copy.png';
+import rb3_3 from './assets/rumusBangun3/image copy 2.png';
+import rb3_4 from './assets/rumusBangun3/image copy 3.png';
+import rb3_5 from './assets/rumusBangun3/image copy 4.png';
+import rb3_6 from './assets/rumusBangun3/image copy 5.png';
+import rb3_7 from './assets/rumusBangun3/image copy 6.png';
+import rb3_8 from './assets/rumusBangun3/image copy 7.png';
+import rb3_9 from './assets/rumusBangun3/image copy 8.png';
+import rb3_10 from './assets/rumusBangun3/image copy 9.png';
+
+import rb4_1 from './assets/rumusBangun4/image.png';
+import rb4_2 from './assets/rumusBangun4/image copy.png';
+import rb4_3 from './assets/rumusBangun4/image copy 2.png';
+import rb4_4 from './assets/rumusBangun4/image copy 3.png';
+import rb4_5 from './assets/rumusBangun4/image copy 4.png';
+import rb4_6 from './assets/rumusBangun4/image copy 5.png';
+import rb4_7 from './assets/rumusBangun4/image copy 6.png';
+import rb4_8 from './assets/rumusBangun4/image copy 7.png';
+import rb4_9 from './assets/rumusBangun4/image copy 8.png';
+import rb4_10 from './assets/rumusBangun4/image copy 9.png';
+
+import rb5_1 from './assets/rumusBangun5/image.png';
+import rb5_2 from './assets/rumusBangun5/image copy.png';
+import rb5_3 from './assets/rumusBangun5/image copy 2.png';
+import rb5_4 from './assets/rumusBangun5/image copy 3.png';
+import rb5_5 from './assets/rumusBangun5/image copy 4.png';
+import rb5_6 from './assets/rumusBangun5/image copy 5.png';
+import rb5_7 from './assets/rumusBangun5/image copy 6.png';
+import rb5_8 from './assets/rumusBangun5/image copy 7.png';
+import rb5_9 from './assets/rumusBangun5/image copy 8.png';
+import rb5_10 from './assets/rumusBangun5/image copy 9.png';
+
 const compoundsData1 = [
   {
     id: 'c1',
@@ -134,7 +166,6 @@ const compoundsData1 = [
   }
 ];
 
-// ==================== Batch 2 (11-20) ====================
 const compoundsData2 = [
   {
     id: 'c11',
@@ -248,7 +279,6 @@ const compoundsData2 = [
   }
 ];
 
-// ==================== Batch 3 (21-30) ====================
 const compoundsData3 = [
   {
     id: 'c21',
@@ -256,7 +286,7 @@ const compoundsData3 = [
     formula: 'NH₃',
     wujud: 'Cairan tidak berwarna (larutan amonia) atau gas tidak berwarna',
     hazards: ['Toksik', 'Karsinogenik'],
-    rumusBangun: null,
+    rumusBangun: rb3_1,
     msds: {
       link: 'https://drive.google.com/file/d/1PlZfM6tPGIdru7HLMUokUY9EC8f0Xoqa/view?usp=drive_link'
     }
@@ -267,7 +297,7 @@ const compoundsData3 = [
     formula: 'NH₄F',
     wujud: 'Padatan kristal putih',
     hazards: ['Toksik', 'Korosif'],
-    rumusBangun: null,
+    rumusBangun: rb3_2,
     msds: {
       link: 'https://drive.google.com/file/d/1yTgf_mBkwtd3wwV5c0aRwJ3aRZhzcm37/view?usp=drive_link'
     }
@@ -278,7 +308,7 @@ const compoundsData3 = [
     formula: 'C₈H₁₀',
     wujud: 'Cairan tidak berwarna',
     hazards: ['Iritan', 'Mudah Terbakar', 'Karsinogen'],
-    rumusBangun: null,
+    rumusBangun: rb3_3,
     msds: {
       link: 'https://drive.google.com/file/d/1JpyA0QwO4RMCbgEehkVlnml0_TTjQGpx/view?usp=drive_link'
     }
@@ -289,7 +319,7 @@ const compoundsData3 = [
     formula: 'Ca(OH)₂',
     wujud: 'Serbuk atau padatan putih',
     hazards: ['Korosif', 'Iritan'],
-    rumusBangun: null,
+    rumusBangun: rb3_4,
     msds: {
       link: 'https://drive.google.com/file/d/1gywp-mtw45k49blGDc5HRMJZUX1mPL-P/view?usp=drive_link'
     }
@@ -300,7 +330,7 @@ const compoundsData3 = [
     formula: 'C₆H₅OH',
     wujud: 'Kristal padat putih hingga merah muda pucat',
     hazards: ['Korosif', 'Toksik', 'Karsinogen', 'Iritan', 'Mudah Terbakar', 'Berbahaya bagi Lingkungan'],
-    rumusBangun: null,
+    rumusBangun: rb3_5,
     msds: {
       link: 'https://drive.google.com/file/d/1jP53ZW549xzxT30oFSIqdSpzoqEji8U7/view?usp=drive_link'
     }
@@ -311,7 +341,7 @@ const compoundsData3 = [
     formula: 'CuSO₄',
     wujud: 'Kristal padat berwarna biru',
     hazards: ['Iritasi', 'Berbahaya bagi Lingkungan'],
-    rumusBangun: null,
+    rumusBangun: rb3_6,
     msds: {
       link: 'https://drive.google.com/drive/folders/1OWewu2EaCHJkSaPLWrVt9myA5uyKhQ-X'
     }
@@ -322,7 +352,7 @@ const compoundsData3 = [
     formula: 'C₆H₁₅N',
     wujud: 'Cairan tidak berwarna hingga kuning pucat',
     hazards: ['Toksik', 'Iritan', 'Mudah Terbakar', 'Karsinogen', 'Berbahaya bagi Lingkungan'],
-    rumusBangun: null,
+    rumusBangun: rb3_7,
     msds: {
       link: 'https://drive.google.com/drive/folders/1OWewu2EaCHJkSaPLWrVt9myA5uyKhQ-X'
     }
@@ -333,7 +363,7 @@ const compoundsData3 = [
     formula: 'CHCl₃',
     wujud: 'Cairan tidak berwarna',
     hazards: ['Iritasi', 'Karsinogen', 'Mudah Terbakar'],
-    rumusBangun: null,
+    rumusBangun: rb3_8,
     msds: {
       link: 'https://drive.google.com/file/d/1HBGViGMCQGVTnSZG21-FYs5F1Et4Sc71/view?usp=drive_link'
     }
@@ -344,7 +374,7 @@ const compoundsData3 = [
     formula: 'C₄H₈O₂',
     wujud: 'Cairan tidak berwarna',
     hazards: ['Toksik', 'Iritan', 'Mudah Terbakar', 'Karsinogen'],
-    rumusBangun: null,
+    rumusBangun: rb3_9,
     msds: {
       link: 'https://drive.google.com/file/d/1zlSOWKAOakk0xwPC5OtE35HtLgyJLKb_/view?usp=drive_link'
     }
@@ -355,14 +385,13 @@ const compoundsData3 = [
     formula: 'CH₂O',
     wujud: 'Larutan cair tidak berwarna (formalin) atau gas tidak berwarna',
     hazards: ['Korosif', 'Toksik', 'Karsinogen'],
-    rumusBangun: null,
+    rumusBangun: rb3_10,
     msds: {
       link: 'https://drive.google.com/file/d/1607FUUhjTI4uLl1DGdmNQGrnxT5ZVZSZ/view?usp=sharing'
     }
   }
 ];
 
-// ==================== Batch 4 (31-39) ====================
 const compoundsData4 = [
   {
     id: 'c31',
@@ -370,7 +399,7 @@ const compoundsData4 = [
     formula: 'CH₃OH',
     wujud: 'Cairan tidak berwarna',
     hazards: ['Mudah Terbakar', 'Beracun'],
-    rumusBangun: null,
+    rumusBangun: rb4_1,
     msds: {
       link: 'https://share.google/wP7XMzKQsevPEcFXy'
     }
@@ -381,7 +410,7 @@ const compoundsData4 = [
     formula: 'C₂H₅OH',
     wujud: 'Cairan tidak berwarna',
     hazards: ['Mudah Terbakar'],
-    rumusBangun: null,
+    rumusBangun: rb4_2,
     msds: {
       link: 'https://share.google/jzfPlmtM9OyC7Jxtj'
     }
@@ -392,7 +421,7 @@ const compoundsData4 = [
     formula: 'C₂H₃N',
     wujud: 'Cairan tidak berwarna',
     hazards: ['Mudah Terbakar'],
-    rumusBangun: null,
+    rumusBangun: rb4_3,
     msds: {
       link: 'https://share.google/uY2dWenkNsG01fYiZ'
     }
@@ -403,7 +432,7 @@ const compoundsData4 = [
     formula: 'C₄H₁₀O',
     wujud: 'Cairan tidak berwarna',
     hazards: ['Mudah Terbakar', 'Meledak'],
-    rumusBangun: null,
+    rumusBangun: rb4_4,
     msds: {
       link: 'https://share.google/JKk1k85otMDlU3r4B'
     }
@@ -414,7 +443,7 @@ const compoundsData4 = [
     formula: 'C₆H₆',
     wujud: 'Cairan tidak berwarna',
     hazards: ['Karsinogenik'],
-    rumusBangun: null,
+    rumusBangun: rb4_5,
     msds: {
       link: 'https://share.google/qQ3of8T0m68INF5eo'
     }
@@ -425,7 +454,7 @@ const compoundsData4 = [
     formula: 'C₆H₁₄',
     wujud: 'Cairan tidak berwarna',
     hazards: ['Mudah Terbakar'],
-    rumusBangun: null,
+    rumusBangun: rb4_6,
     msds: {
       link: 'https://share.google/MLJEc2QLDBGh4VPac'
     }
@@ -436,7 +465,7 @@ const compoundsData4 = [
     formula: 'Pb(NO₃)₂',
     wujud: 'Padatan kristal putih',
     hazards: ['Korosif'],
-    rumusBangun: null,
+    rumusBangun: rb4_7,
     msds: {
       link: 'https://share.google/WeQzAnuOs5gmorho3'
     }
@@ -447,7 +476,7 @@ const compoundsData4 = [
     formula: 'Pb(CH₃COO)₂',
     wujud: 'Kristal tidak berwarna',
     hazards: ['Beracun'],
-    rumusBangun: null,
+    rumusBangun: rb4_8,
     msds: {
       link: 'https://share.google/PQQBR96RAT7d1EvgG'
     }
@@ -458,14 +487,13 @@ const compoundsData4 = [
     formula: 'Sr(NO₃)₂',
     wujud: 'Padatan tidak berwarna',
     hazards: ['Oksidator'],
-    rumusBangun: null,
+    rumusBangun: rb4_9,
     msds: {
       link: 'https://share.google/vuciKMFJnUn4xP31R'
     }
   }
 ];
 
-// ==================== Batch 5 (40-50) ====================
 const compoundsData5 = [
   {
     id: 'c40',
@@ -473,7 +501,7 @@ const compoundsData5 = [
     formula: 'BaCl₂',
     wujud: 'Padatan kristal putih',
     hazards: ['Beracun'],
-    rumusBangun: null,
+    rumusBangun: rb4_10,
     msds: {
       link: 'https://drive.google.com/file/d/1iIfYM6AGQ4IH7epoCdH5r-Ffh2_dnvE_/view?usp=drive_link'
     }
@@ -484,7 +512,7 @@ const compoundsData5 = [
     formula: 'ZnCl₂',
     wujud: 'Serbuk kristal putih',
     hazards: ['Korosif', 'Iritan', 'Berbahaya bagi Lingkungan'],
-    rumusBangun: null,
+    rumusBangun: rb5_1,
     msds: {
       link: 'https://drive.google.com/file/d/1srYJA8rToJ9pthBMwSc3rmwPAcbcwzW6/view?usp=drive_link'
     }
@@ -495,7 +523,7 @@ const compoundsData5 = [
     formula: 'Cu(NO₃)₂.3H₂O',
     wujud: 'Padatan kristal biru',
     hazards: ['Oksidator', 'Iritan', 'Berbahaya bagi Lingkungan'],
-    rumusBangun: null,
+    rumusBangun: rb5_2,
     msds: {
       link: 'https://drive.google.com/file/d/1Kyl7ul8EOBJrRNrUB7y8DG_KqwXB-p9Y/view?usp=drive_link'
     }
@@ -506,7 +534,7 @@ const compoundsData5 = [
     formula: 'ZnSO₄',
     wujud: 'Padatan kristal putih',
     hazards: ['Korosif', 'Iritan', 'Berbahaya bagi Lingkungan'],
-    rumusBangun: null,
+    rumusBangun: rb5_3,
     msds: {
       link: 'https://drive.google.com/file/d/1AUTWIIo3rJZ576OHS5FkFgDiyGMy9UuJ/view'
     }
@@ -517,7 +545,7 @@ const compoundsData5 = [
     formula: 'HPO₃',
     wujud: 'Padatan kristal tak berwarna',
     hazards: ['Korosif'],
-    rumusBangun: null,
+    rumusBangun: rb5_4,
     msds: {
       link: 'https://drive.google.com/file/d/12uxIVOjHPf_S79Ng7yd3jBtEcIvQrzYA/view?usp=drive_link'
     }
@@ -528,7 +556,7 @@ const compoundsData5 = [
     formula: 'C₇H₈',
     wujud: 'Cairan tak berwarna',
     hazards: ['Oksidator', 'Bahaya Kesehatan', 'Iritan'],
-    rumusBangun: null,
+    rumusBangun: rb5_5,
     msds: {
       link: 'https://drive.google.com/file/d/1s_QTQo4YPDrq3APS1xcRVuTHH1mSXwkd/view?usp=drive_link'
     }
@@ -539,7 +567,7 @@ const compoundsData5 = [
     formula: 'HgO',
     wujud: 'Padatan berwarna merah',
     hazards: ['Beracun', 'Bahaya Kesehatan', 'Berbahaya bagi Lingkungan'],
-    rumusBangun: null,
+    rumusBangun: rb5_6,
     msds: {
       link: 'https://drive.google.com/file/d/1c42AQXPoYXF5Sg6wawieRRjdvzp5cgMZ/view'
     }
@@ -550,7 +578,7 @@ const compoundsData5 = [
     formula: 'ZnSO₄.7H₂O',
     wujud: 'Padatan keputih-putihan',
     hazards: ['Korosif', 'Iritan', 'Berbahaya bagi Lingkungan'],
-    rumusBangun: null,
+    rumusBangun: rb5_7,
     msds: {
       link: 'https://drive.google.com/file/d/1agGjCndklVbt-HZFFiZf_pdSUzoP057X/view?usp=drive_link'
     }
@@ -561,7 +589,7 @@ const compoundsData5 = [
     formula: 'H₂O₂',
     wujud: 'Cairan tak berwarna',
     hazards: ['Korosif'],
-    rumusBangun: null,
+    rumusBangun: rb5_8,
     msds: {
       link: 'https://drive.google.com/file/d/1QwNZ5tgGthmyiNWSnGlMzKGCoJ_UdGbE/view?usp=drive_link'
     }
@@ -572,7 +600,7 @@ const compoundsData5 = [
     formula: 'NaCN',
     wujud: 'Padatan kristal putih',
     hazards: ['Beracun', 'Bahaya Kesehatan', 'Korosif', 'Berbahaya bagi Lingkungan'],
-    rumusBangun: null,
+    rumusBangun: rb5_9,
     msds: {
       link: 'https://drive.google.com/file/d/150BmSfifNUP0JouhPGyITz1q3xQb4o-M/view?usp=drive_link'
     }
@@ -583,7 +611,7 @@ const compoundsData5 = [
     formula: 'C₁₄H₁₀O₄',
     wujud: 'Padatan kristal putih',
     hazards: ['Mudah Terbakar', 'Iritan', 'Berbahaya bagi Lingkungan'],
-    rumusBangun: null,
+    rumusBangun: rb5_10,
     msds: {
       link: 'https://drive.google.com/file/d/1zDKvitDmHSk3odA_vbybQFNy4whx_rpE/view?usp=drive_link'
     }
