@@ -46,7 +46,7 @@ export default function App() {
 
   return (
     <div>
-      {/* Landing / Hero - centered when not searching */}
+      {/* sebelum searching */}
       <div className={`hero-section ${isSearching ? 'hero-section--compact' : ''}`}>
         <div className="hero-content">
           <h1 className="hero-title">Chemical Safety Database</h1>
@@ -70,7 +70,7 @@ export default function App() {
         </div>
       </div>
 
-      {/* Results - only show when searching */}
+      {/* hasil pas searching */}
       {isSearching && (
         <main className="container mt-md" style={{ paddingBottom: '40px' }}>
           <div className="grid-layout">
@@ -95,7 +95,7 @@ export default function App() {
 }
 
 
-// ================= Card =================
+//  card  
 
 function CompoundCard({ data, onClick }) {
   const getHazardClass = (hz) => {
@@ -142,7 +142,7 @@ function CompoundCard({ data, onClick }) {
 }
 
 
-// ================= Modal =================
+// Modal 
 
 function CompoundModal({ data, onClose }) {
   const getHazardClass = (hz) => {
@@ -178,18 +178,18 @@ function CompoundModal({ data, onClose }) {
           {data.rumusBangun && (
             <div className="modal-section" style={{ paddingBottom: '20' }}>
               <h3 className="label-caps text-on-surface mb-sm">Rumus Bangun</h3>
-              <div style={{ 
-                background: 'var(--surface-container-low)', 
-                borderRadius: '12px', 
-                padding: '20px', 
-                display: 'flex', 
+              <div style={{
+                background: 'var(--surface-container-low)',
+                borderRadius: '12px',
+                padding: '20px',
+                display: 'flex',
                 justifyContent: 'center',
                 border: '1px solid var(--outline-variant)'
               }}>
-                <img 
-                  src={data.rumusBangun} 
-                  alt={`Struktur ${data.name}`} 
-                  style={{ maxHeight: '140px', objectFit: 'contain' }} 
+                <img
+                  src={data.rumusBangun}
+                  alt={`Struktur ${data.name}`}
+                  style={{ maxHeight: '140px', objectFit: 'contain' }}
                 />
               </div>
             </div>
