@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Kmal4li.github.io/ChemBase/",
+  "homepage": "https://Kmal4li.github.io/ChemicalSafetyDatabase/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
