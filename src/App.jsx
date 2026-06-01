@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './index.css';
 import { compoundsData } from './data';
+import bgSearch from './assets/background_search.jpeg';
 
 const SearchIcon = () => (
   <svg className="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -47,7 +48,9 @@ export default function App() {
   return (
     <div>
       {/* sebelum searching */}
-      <div className={`hero-section ${isSearching ? 'hero-section--compact' : ''}`}>
+      <div className={`hero-section ${isSearching ? 'hero-section--compact' : ''}`}
+        style={!isSearching ? { backgroundImage: `url(${bgSearch})` } : {}}
+      >
         <div className="hero-content">
           <h1 className="hero-title">Chemical Safety Database</h1>
           <p className="hero-subtitle">Cari informasi zat kimia, sifat bahaya, dan data MSDS</p>
